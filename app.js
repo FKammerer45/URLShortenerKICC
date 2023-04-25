@@ -14,7 +14,7 @@ app.listen(3000, () => {
 const shortenUrl = (longUrl) => {
     const shortUrlPath = generateShortUrlPath();
     saveUrlMapping(shortUrlPath, longUrl);
-    return 'http://localhost:3000/' + shortUrlPath;
+    return 'https://urlshortenerkicc.azurewebsites.net/' + shortUrlPath;
 };
 
 // Homepage route
