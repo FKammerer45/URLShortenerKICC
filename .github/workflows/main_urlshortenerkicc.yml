@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'URLShortenerKICC'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A20CA781B0054310B0AA055C6C4BE092 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3A4560CD769847669BA0F61CDD054FCF }}
           package: .
