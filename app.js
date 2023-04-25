@@ -1,14 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 
 // Add your routes here
 
-app.listen(3000, () => {
-    console.log('URL shortener listening on port 3000');
+app.listen(port, () => {
+    console.log('URL shortener listening on port ${port}');
 });
 // URL shortening logic goes here
 const shortenUrl = (longUrl) => {
