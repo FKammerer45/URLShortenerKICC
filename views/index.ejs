@@ -7,26 +7,32 @@
 </head>
 <body>
 <h1>URL Shortener</h1>
-<form id="shorten-form" action="/shorten" method="POST">
-    <label for="url">URL:</label>
-    <input type="url" name="url" id="url" placeholder="https://example.com" required>
-    <button type="submit">Shorten</button>
+<form id="url-shortener-form">
+    <input type="url" id="long-url" placeholder="Enter a long URL" required>
+    <button type="submit">Shorten URL</button>
 </form>
 <div id="result"></div>
 <script>
-    document.getElementById('shorten-form').addEventListener('submit', async (e) => {
+    const shortenUrlFunctionUrl = 'https://urlshortenerfunctions.azurewebsites.net/shorten';
+
+    document.getElementById('url-shortener-form').addEventListener('submit', async (e) => {
         e.preventDefault();
-        const url = document.getElementById('url').value;
-        const response = await fetch('/shorten', {
+
+        const longUrl = document.getElementById('long-url').value;
+        const response = await fetch(shortenUrlFunctionUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ url })
+            body: JSON.stringify({ longUrl })
         });
 
-        const data = await response.json();
-        document.getElementById('result').innerText = `Shortened URL: ${data.shortUrl}`;
+        if (response.ok) {
+            const { shortUrl } = await response.json();
+            document.getElementById('result').textContent = `Short URL: ${shortUrl}`;
+        } else {
+            document.getElementById('result').textContent = 'Error: Unable to shorten URL.';
+        }
     });
 </script>
 </body>
